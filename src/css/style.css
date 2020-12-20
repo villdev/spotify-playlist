@@ -1,10 +1,37 @@
 * {
   box-sizing: border-box;
-  color: rgb(22, 22, 22);
+  color: #ffffff;
 }
 
 body {
-  background-color: #e5e7eb;
+  /* background-color: #e5e7eb; */
+  background-color: #181818;
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.wrapper {
+  max-width: 600px;
+  margin: auto;
+  padding: 2rem;
+}
+
+hr {
+  border: 1px solid rgba(128, 128, 128, 0.349);
+  margin-bottom: 2rem;
+}
+
+li:hover {
+  background-color: #282828;
+}
+
+button {
+  color: #b3b3b3;
+}
+button:hover:not(.active) {
+  color: #ffffff;
+}
+
+.active {
+  color: #1ed760;
 }
