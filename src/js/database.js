@@ -1,5 +1,3 @@
-import React from "react";
-
 const songDB2 = () => {
   return {
     "New Songs": [
