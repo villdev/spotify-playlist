@@ -27,16 +27,14 @@ li {
   /* align-items: center; */
   /* justify-content: center; */
 }
-.enlarge {
-  height: 380px;
+.genre-wrapper {
+  display: flex;
+  justify-content: space-between;
 }
-
-li:hover {
-  background-color: #282828;
-}
-
 button {
   color: #b3b3b3;
+  width: 30%;
+  /* height: 40px; */
 }
 button:hover:not(.active) {
   color: #ffffff;

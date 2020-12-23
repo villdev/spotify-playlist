@@ -35,7 +35,7 @@ export default function App() {
         Spotify Playlist
       </h1>
       <p style={{ fontSize: "smaller" }}>Checkout my recommended playlist.</p>
-      <div>
+      <div className="genre-wrapper">
         {Object.keys(database2).map((playlist) => (
           <button
             key={playlist}
@@ -44,7 +44,7 @@ export default function App() {
               cursor: "pointer",
               background: "#121212",
               borderRadius: "0.5rem",
-              padding: "0.5rem  1rem",
+              padding: "1rem  1rem",
               border: "1px solid black",
               margin: "1rem 0.3rem",
             }}

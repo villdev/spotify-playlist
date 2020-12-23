@@ -21,7 +21,7 @@ const songDB2 = () => {
       "https://open.spotify.com/embed/track/0kw9ZHlFNULgpGGTx2JgH5",
     ],
 
-    "Fav Songs": [
+    "Favourite Songs": [
       "https://open.spotify.com/embed/track/2JtSnwYNKOphDrshYL8n4p",
       "https://open.spotify.com/embed/track/1HKl3RJInVzf5ObVnM644j",
       "https://open.spotify.com/embed/track/7hzlzoOwCZ4D3Ow5YZK4kj",
@@ -34,7 +34,7 @@ const songDB2 = () => {
       "https://open.spotify.com/embed/track/58adTUxM5N810ZVYuW9tmW",
       "https://open.spotify.com/embed/track/6PMVAJwWESCP41PDbMSyOs",
     ],
-    "Old Fav": [
+    "Old Favourites": [
       "https://open.spotify.com/embed/track/7wMq5n8mYSKlQIGECKUgTX",
       "https://open.spotify.com/embed/track/2nLtzopw4rPReszdYBJU6h",
       "https://open.spotify.com/embed/track/47BBI51FKFwOMlIiX6m8ya",
