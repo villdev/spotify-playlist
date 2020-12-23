@@ -1,46 +1,31 @@
 import React, { useState } from "react";
+import { songDB2 } from "./js/database";
+import Spinner from "react-spinkit";
 import "./css/style.css";
 
-const database = {
-  "New Songs": [
-    { name: "Runaway", artist: "Lost Kings, Destiny Rogers" },
-    { name: "Into You", artist: "Melanie C" },
-  ],
-
-  "Fav Songs": [
-    {
-      name: "I'm Like A Bird",
-      artist: "Alessia Cara",
-    },
-    {
-      name: "queen of broken hearts",
-      artist: "blackbear",
-    },
-  ],
-  "Old Fav": [
-    {
-      name: "The Ocean",
-      artist: "Mike Perry, Shy Martin",
-    },
-    {
-      name: "Demons",
-      artist: "Imagine Dragons",
-    },
-  ],
-};
+const database2 = songDB2();
 
 export default function App() {
-  const [selectedPlaylist, setPlaylist] = useState(Object.keys(database)[0]);
+  const [selectedPlaylist, setPlaylist] = useState(Object.keys(database2)[2]);
+  const [loading, setLoading] = useState([
+    0,
+    database2[Object.keys(database2)[2]].length,
+    true,
+  ]);
+
   function playlistClickHandler(playlist) {
     setPlaylist(playlist);
+    setLoading([0, database2[playlist].length, true]);
   }
-  function getClass(playlist) {
-    if (playlist === selectedPlaylist) {
-      return "active";
-    } else {
-      return "";
+  function loadHandler() {
+    setLoading([loading[0] + 1, loading[1], loading[2]]);
+  }
+  if (loading[2]) {
+    if (loading[0] === loading[1]) {
+      setLoading([loading[0], loading[1], false]);
     }
   }
+
   return (
     <div className="wrapper">
       <h1>
@@ -51,7 +36,7 @@ export default function App() {
       </h1>
       <p style={{ fontSize: "smaller" }}>Checkout my recommended playlist.</p>
       <div>
-        {Object.keys(database).map((playlist) => (
+        {Object.keys(database2).map((playlist) => (
           <button
             key={playlist}
             onClick={() => playlistClickHandler(playlist)}
@@ -63,33 +48,46 @@ export default function App() {
               border: "1px solid black",
               margin: "1rem 0.3rem",
             }}
-            className={getClass(playlist)}
+            className={playlist === selectedPlaylist ? "active" : ""}
           >
             {playlist}
           </button>
         ))}
       </div>
       <hr />
-      <div style={{ textAlign: "left" }}>
-        <ul style={{ paddingInlineStart: "0" }}>
-          {database[selectedPlaylist].map((song) => (
+      <div className="content-wrapper" style={{ textAlign: "left" }}>
+        {loading[2] ? (
+          <div className="loader-wrapper">
+            <Spinner name="cube-grid" color="green" fadeIn="none" />
+          </div>
+        ) : null}
+        <ul
+          className={loading[2] ? "loading-content" : "content"}
+          style={{ paddingInlineStart: "0" }}
+        >
+          {database2[selectedPlaylist].map((songSrc) => (
             <li
-              key={song.name}
+              key={songSrc}
               style={{
                 listStyle: "none",
-                padding: "1rem",
+                padding: "0",
                 border: "1px solid #282828",
                 width: "100%",
-                margin: "1rem 0rem",
+                margin: "1.5rem 0rem",
                 borderRadius: "0.5rem",
+                height: "80px",
               }}
             >
-              {" "}
-              <div style={{ fontSize: "larger" }}> {song.name} </div>
-              <div style={{ fontSize: "smaller", color: "#dbdbdbc2" }}>
-                {" "}
-                {song.artist}{" "}
-              </div>
+              <iframe
+                title={"song" + songSrc}
+                src={songSrc}
+                width="100%"
+                height="80"
+                frameBorder="0"
+                allowtransparency="true"
+                allow="encrypted-media"
+                onLoad={loadHandler}
+              ></iframe>
             </li>
           ))}
         </ul>
